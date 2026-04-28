@@ -1,0 +1,36 @@
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+
+# Environment variables
+.env
+
+
+# dbt
+target/
+dbt_packages/
+logs/
+
+
+# OS files
+.DS_Store
+Thumbs.db
+
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+
+# Docker
+*.log

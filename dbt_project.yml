@@ -1,0 +1,13 @@
+name: 'alignd_de_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'alignd_profile'
+
+model-paths: ["models"]
+test-paths: ["tests"]
+
+models:
+  alignd_de_project:
+    
+    +materialized: table

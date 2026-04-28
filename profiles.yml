@@ -1,0 +1,12 @@
+alignd_profile:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      host: postgres
+      user: postgres
+      password: masterCHEF10
+      port: 5432
+      dbname: alignd_db
+      schema: warehouse
+      threads: 1

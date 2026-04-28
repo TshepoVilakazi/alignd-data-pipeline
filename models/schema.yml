@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: dim_patients
+    description: "Patient dimension table created from staging client data."
+    columns:
+      - name: patient_id
+        description: "Unique patient identifier."
+        tests:
+          - unique
+          - not_null
+
+      - name: name
+        description: "Patient name."
+
+      - name: income
+        description: "Patient income."
+
+      - name: province
+        description: "Patient province."
+
+  - name: stg_policy_client_map
+    description: "Mapping table linking policies to patients for patient-level aggregation."
+    columns:
+      - name: policy_id
+        description: "Unique policy identifier."
+        tests:
+          - unique
+          - not_null
+
+      - name: patient_id
+        description: "Patient identifier mapped to a policy."
+        tests:
+          - not_null
+
+  - name: fct_patient_claims_summary
+    description: "Patient-level claims/lapses summary fact table."
+    columns:
+      - name: patient_id
+        description: "Patient identifier used for aggregation."
+        tests:
+          - unique
+          - not_null
+
+      - name: total_lapses
+        description: "Total number of lapse records per patient."
+        tests:
+          - not_null
+
+      - name: total_premium_amount
+        description: "Total premium amount per patient."
+        tests:
+          - not_null
+
+      - name: first_lapse_date
+        description: "First lapse date for the patient."
+
+      - name: last_lapse_date
+        description: "Most recent lapse date for the patient."

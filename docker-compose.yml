@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: alignd_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: masterCHEF10
+      POSTGRES_DB: alignd_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pipeline:
+    build: .
+    container_name: alignd_pipeline
+    depends_on:
+      - postgres
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: masterCHEF10
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: alignd_db
+      DBT_PROFILES_DIR: /app
+    volumes:
+      - .:/app
+    command: bash run_pipeline.sh
+
+volumes:
+  postgres_data:
